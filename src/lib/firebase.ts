@@ -13,14 +13,14 @@ import {
   UserCredential,
 } from "firebase/auth";
 
-// Your web app's Firebase configuration
+// Firebase configuration from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyATRPG50Oua1p5XaWyF03HNMfMBJ1IYAlU",
-  authDomain: "studio-7174564616-7a8a8.firebaseapp.com",
-  projectId: "studio-7174564616-7a8a8",
-  storageBucket: "studio-7174564616-7a8a8.firebasestorage.app",
-  messagingSenderId: "111368949838",
-  appId: "1:111368949838:web:7a0014d197245865efb31f",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase (prevent re-initialization)
