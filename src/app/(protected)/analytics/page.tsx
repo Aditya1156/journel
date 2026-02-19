@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -46,7 +46,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -233,54 +233,46 @@ export default function AnalyticsPage() {
           suffix="%"
           icon={Target}
           trend={{ value: 2.5, isPositive: true }}
-          color="blue"
         />
         <AnimatedMetricCard
           title="Profit Factor"
           value={profitFactor === Infinity ? 99 : profitFactor}
           decimals={2}
           icon={Award}
-          color="purple"
         />
         <AnimatedMetricCard
           title="Avg Win"
           value={avgWin}
           prefix="$"
           icon={TrendingUp}
-          color="green"
         />
         <AnimatedMetricCard
           title="Avg Loss"
           value={avgLoss}
           prefix="$"
           icon={TrendingDown}
-          color="red"
         />
         <AnimatedMetricCard
           title="Best Trade"
           value={bestTrade.pnl || 0}
           prefix="$"
           icon={Zap}
-          color="green"
         />
         <AnimatedMetricCard
           title="Worst Trade"
           value={Math.abs(worstTrade.pnl || 0)}
           prefix="-$"
           icon={Activity}
-          color="red"
         />
         <AnimatedMetricCard
           title="Win Streak"
           value={maxWinStreak}
           icon={TrendingUp}
-          color="green"
         />
         <AnimatedMetricCard
           title="Loss Streak"
           value={maxLossStreak}
           icon={TrendingDown}
-          color="red"
         />
       </motion.div>
 
@@ -306,7 +298,7 @@ export default function AnalyticsPage() {
 
       {/* Third Row - Heatmap */}
       <motion.div variants={itemVariants}>
-        <PerformanceHeatmap trades={filteredTrades} />
+        <PerformanceHeatmap trades={filteredTrades} type="hourly" />
       </motion.div>
 
       {/* Fourth Row - 2 Column Layout */}
