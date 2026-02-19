@@ -2,7 +2,8 @@ import { initializeApp, getApps } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -33,9 +34,13 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-// Auth functions
-export const signInWithGoogle = async (): Promise<UserCredential> => {
-  return signInWithPopup(auth, googleProvider);
+// Auth functions — use redirect instead of popup (works on all domains/Vercel)
+export const signInWithGoogle = async (): Promise<void> => {
+  return signInWithRedirect(auth, googleProvider);
+};
+
+export const handleGoogleRedirect = async (): Promise<UserCredential | null> => {
+  return getRedirectResult(auth);
 };
 
 export const signInWithEmail = async (

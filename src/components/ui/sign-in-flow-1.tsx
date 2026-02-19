@@ -173,8 +173,8 @@ export const SignInPage = ({ className, mode = "login" }: SignInPageProps) => {
     setIsLoading(true);
     setError(null);
     try {
+      // signInWithRedirect navigates away — no return value
       await signInWithGoogle();
-      handleSuccessAnimation();
     } catch (err: any) {
       console.error("Google sign-in error:", err);
       setError(getErrorMessage(err.code));

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "firebase/auth";
-import { onAuthChange, logOut } from "@/lib/firebase";
+import { onAuthChange, logOut, handleGoogleRedirect } from "@/lib/firebase";
 
 interface AuthContextType {
   user: User | null;
@@ -33,6 +33,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Handle Google redirect result on page load
+    handleGoogleRedirect().catch((err) =>
+      console.error("Google redirect error:", err)
+    );
+
     const unsubscribe = onAuthChange((user) => {
       setUser(user);
       setLoading(false);
